@@ -1,0 +1,90 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    background: url("./images/pexels-pixabay-276218.jpg");
+    background-size: cover;
+    font-family: 'Roboto', sans-serif;
+    padding-top: 6rem;
+}
+
+nav {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+    padding: 1rem 0;
+    text-align: center;
+    position: fixed; /* Keeps the navbar at the top of the page */
+    width: 100%;
+    top: 0;
+    z-index: 1000; /* Ensures the navbar stays above other elements */
+}
+
+nav a {
+    color: bisque; /* Matches the color of the headings */
+    font-size: 2rem; /* Consistent with the paragraph text size */
+    font-weight: 600;
+    text-decoration: none;
+    margin: 0 1.5rem;
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+nav a:hover {
+    color: white; /* Change color on hover for better interaction */
+}
+
+section {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    margin-top: 4rem;
+    text-align: center;
+}
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    margin-top: 4rem;
+    text-align: center;
+}
+
+h1 {
+    color: bisque;
+    font-size: 5rem;
+    font-weight: 700;
+    letter-spacing: 8px;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    color: #a9a9a9;
+    font-size: 4rem;
+    font-weight: 400;
+    letter-spacing: 8px;
+    margin-bottom: 2rem;
+}
+
+.image img {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    width: 250px; /* Adjust the size as needed */
+    height: 250px; /* Maintain the same value for width and height to keep the image square */
+    border-radius: 60%; /* This makes the image circular */
+    object-fit: cover;
+}
+
+p {
+    font-size: 3rem;
+    color: beige;
+    line-height: 4rem;
+    margin-bottom: 4rem;
+}
+
