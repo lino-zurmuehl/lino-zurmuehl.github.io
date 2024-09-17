@@ -77,7 +77,7 @@ h2 {
     margin-bottom: 5rem;
     width: 250px; /* Adjust the size as needed */
     height: 250px; /* Maintain the same value for width and height to keep the image square */
-    border-radius: 60%; /* This makes the image circular */
+    border-radius: 70%; /* This makes the image circular */
     object-fit: cover;
 }
 
