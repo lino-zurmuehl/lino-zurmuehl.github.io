@@ -12,14 +12,17 @@ html {
 }
 
 body {
-    background: url("./images/pexels-pixabay-276218.jpg");
+    position: relative; /* Make sure the body is positioned */
+    background: url("./images/DALL_E.png");
     background-size: cover;
     font-family: 'Roboto', sans-serif;
     padding-top: 6rem;
+    margin: 0;
+    min-height: 100vh;
 }
 
 nav {
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent dark background */
     padding: 1rem 0;
     text-align: center;
     position: fixed; /* Keeps the navbar at the top of the page */
@@ -65,7 +68,7 @@ h1 {
 }
 
 h2 {
-    color: #a9a9a9;
+    color: #090909;
     font-size: 4rem;
     font-weight: 400;
     letter-spacing: 8px;
@@ -77,13 +80,13 @@ h2 {
     margin-bottom: 5rem;
     width: 250px; /* Adjust the size as needed */
     height: 250px; /* Maintain the same value for width and height to keep the image square */
-    border-radius: 70%; /* This makes the image circular */
+    border-radius: 90%; /* This makes the image circular */
     object-fit: cover;
 }
 
 p {
     font-size: 3rem;
-    color: beige;
+    color: rgb(246, 229, 208);
     line-height: 4rem;
     margin-bottom: 4rem;
 }
