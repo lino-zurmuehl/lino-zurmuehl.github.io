@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
 
 * {
@@ -12,8 +11,8 @@ html {
 }
 
 body {
-    position: relative; /* Make sure the body is positioned */
-    background: url("./images/DALL_E.png");
+    position: relative;
+    background: linear-gradient(rgba(184, 178, 166, 0.8), rgba(184, 178, 166, 0.8)), url("./images/DALL_E.png");
     background-size: cover;
     font-family: 'Roboto', sans-serif;
     padding-top: 6rem;
@@ -22,36 +21,40 @@ body {
 }
 
 nav {
-    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent dark background */
+    background-color: rgba(51, 51, 51, 0.95);
     padding: 1rem 0;
     text-align: center;
-    position: fixed; /* Keeps the navbar at the top of the page */
+    position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1000; /* Ensures the navbar stays above other elements */
+    z-index: 1000;
 }
 
 nav a {
-    color: bisque; /* Matches the color of the headings */
-    font-size: 2rem; /* Consistent with the paragraph text size */
+    color: #ffffff;
+    font-size: 1.6rem;
     font-weight: 600;
     text-decoration: none;
     margin: 0 1.5rem;
-    transition: color 0.3s ease; /* Smooth color transition on hover */
+    transition: color 0.3s ease;
 }
 
 nav a:hover {
-    color: white; /* Change color on hover for better interaction */
+    color: #d4d4d4;
 }
 
 section {
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 0 3rem;
-    margin-top: 4rem;
+    background-color: rgba(51, 51, 51, 0.8);
+    border-radius: 15px;
+    margin: 4rem auto;
+    padding: 4rem;
+    max-width: 1200px;
     text-align: center;
 }
+
 .container {
+    background-color: rgba(51, 51, 51, 0.8);
+    border-radius: 15px;
     max-width: 1600px;
     margin: 0 auto;
     padding: 0 3rem;
@@ -60,34 +63,53 @@ section {
 }
 
 h1 {
-    color: bisque;
-    font-size: 5rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 3.6rem;
     font-weight: 700;
-    letter-spacing: 8px;
-    margin-bottom: 2rem;
+    letter-spacing: 4px;
+    margin-bottom: 1.5rem;
 }
 
 h2 {
-    color: #090909;
-    font-size: 4rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 2.8rem;
     font-weight: 400;
-    letter-spacing: 8px;
-    margin-bottom: 2rem;
+    letter-spacing: 3px;
+    margin-bottom: 1.5rem;
 }
 
 .image img {
-    margin-top: 5rem;
-    margin-bottom: 5rem;
-    width: 250px; /* Adjust the size as needed */
-    height: 250px; /* Maintain the same value for width and height to keep the image square */
-    border-radius: 90%; /* This makes the image circular */
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    width: 250px;
+    height: 250px;
+    border-radius: 90%;
     object-fit: cover;
 }
 
 p {
-    font-size: 3rem;
-    color: rgb(246, 229, 208);
-    line-height: 4rem;
-    margin-bottom: 4rem;
+    font-size: 1.6rem;
+    color: #ffffff;
+    line-height: 2.4rem;
+    margin-bottom: 2rem;
+    text-align: justify;
+}
+
+a {
+    color: #00bfff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #80dfff;
+}
+
+iframe {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
