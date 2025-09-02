@@ -8,9 +8,14 @@
 </head>
 <body>
     <nav>
-        <a href="#home">Home</a>
-        <a href="missing_migrants.html">IOM Missing Migrants Project</a>
-        <a href="cv.html">CV</a>
+        <div class="nav-inner">
+            <a class="logo" href="index.html"><span class="dot"></span>Lino Zurmühl</a>
+            <div class="links" role="navigation" aria-label="main navigation">
+                <a href="index.html">Home</a>
+                <a href="missing_migrants.html">IOM Missing Migrants Project</a>
+                <a href="cv.html">CV</a>
+            </div>
+        </div>
     </nav>
 
     <section id="home">
@@ -26,5 +31,13 @@
         
         <p>Now, as a research assistant at the Max Planck Institute for Human Development, I work at the Center for Humans and Machines as an AI Behaviorist. I'm excited to continue expanding my expertise through the Master of Data Science for Public Policy program at Hertie School, where I look forward to combining my skills with a passion for creating positive societal impact.</p>
     </section>
+    <script>
+    (function(){
+        const current = location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('nav a').forEach(a => {
+            if (a.getAttribute('href') === current) a.classList.add('active');
+        });
+    })();
+    </script>    
 </body>
 </html>
