@@ -1,115 +1,204 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@300;400;600;700&display=swap');
+
+:root{
+    --bg-overlay: rgba(22,22,22,0.55);
+    --card-bg: rgba(30,30,30,0.65);
+    --accent: #b99f66; 
+    --muted: #d4d4d4;
+    --link: #7fd3ff;
+    --glass-border: rgba(255,255,255,0.06);
+    --radius: 14px;
+}
+
+/* reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html {
-    font-size: 10px;
-}
+html { font-size: 10px; }
 
 body {
     position: relative;
-    background: linear-gradient(rgba(184, 178, 166, 0.8), rgba(184, 178, 166, 0.8)), url("./images/DALL_E.png");
-    background-size: cover;
-    font-family: 'Roboto', sans-serif;
-    padding-top: 6rem;
-    margin: 0;
+    background: linear-gradient(rgba(184,178,166,0.08), rgba(184,178,166,0.08)), url("./images/DALL_E.png") center/cover no-repeat fixed;
+    font-family: 'Roboto', 'Helvetica', Arial, sans-serif;
+    color: #fff;
+    padding-top: 7rem;
     min-height: 100vh;
 }
 
+/* header / nav */
 nav {
-    background-color: rgba(51, 51, 51, 0.95);
-    padding: 1rem 0;
-    text-align: center;
     position: fixed;
-    width: 100%;
     top: 0;
+    width: 100%;
     z-index: 1000;
+    backdrop-filter: blur(6px);
+    background: linear-gradient(90deg, rgba(10,10,10,0.75), rgba(20,20,20,0.55));
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+nav .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.05rem 1.5rem;
+    gap: 1rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--accent);
+    font-weight: 700;
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.logo .dot {
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(180deg, rgba(255,230,180,0.95), rgba(185,155,80,0.95));
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(185,155,80,0.25);
+}
+
+nav .links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 }
 
 nav a {
     color: #ffffff;
     font-size: 1.6rem;
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: none;
-    margin: 0 1.5rem;
-    transition: color 0.3s ease;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    transition: background 180ms ease, color 180ms ease, transform 100ms ease;
 }
 
-nav a:hover {
-    color: #d4d4d4;
+nav a:hover,
+nav a:focus {
+    background: rgba(255,255,255,0.03);
+    transform: translateY(-2px);
+    outline: none;
 }
 
+nav a.active {
+    background: linear-gradient(90deg, rgba(185,155,80,0.18), rgba(160,130,60,0.08));
+    color: var(--accent);
+    box-shadow: 0 6px 18px rgba(185,155,80,0.06);
+}
+
+/* content cards / sections */
 section {
-    background-color: rgba(51, 51, 51, 0.8);
-    border-radius: 15px;
-    margin: 4rem auto;
-    padding: 4rem;
-    max-width: 1200px;
-    text-align: center;
+    background: linear-gradient(180deg, rgba(34,34,34,0.64), rgba(18,18,18,0.5));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    margin: 4.5rem auto;
+    padding: 3.2rem;
+    max-width: 1100px;
+    text-align: left;
+    color: #eee;
+    backdrop-filter: blur(6px) saturate(120%);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.45);
 }
 
+/* util container */
 .container {
-    background-color: rgba(51, 51, 51, 0.8);
-    border-radius: 15px;
-    max-width: 1600px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 3rem;
-    margin-top: 4rem;
-    text-align: center;
+    padding: 0 2rem;
+    text-align: left;
 }
 
+/* headings */
 h1 {
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-family: 'Roboto Slab', serif;
     font-size: 3.6rem;
     font-weight: 700;
-    letter-spacing: 4px;
-    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
 }
 
 h2 {
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    font-size: 2.8rem;
-    font-weight: 400;
-    letter-spacing: 3px;
-    margin-bottom: 1.5rem;
+    color: #fff;
+    font-family: 'Roboto Slab', serif;
+    font-size: 2.6rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
 }
 
+/* profile image */
 .image img {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    width: 250px;
-    height: 250px;
-    border-radius: 90%;
+    display: block;
+    margin: 2rem 0;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
     object-fit: cover;
+    border: 3px solid rgba(255,255,255,0.06);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.55);
 }
 
+/* paragraphs and links */
 p {
     font-size: 1.6rem;
-    color: #ffffff;
-    line-height: 2.4rem;
-    margin-bottom: 2rem;
-    text-align: justify;
+    color: #e6e6e6;
+    line-height: 2.6rem;
+    margin-bottom: 1.6rem;
 }
 
 a {
-    color: #00bfff;
+    color: var(--link);
     text-decoration: none;
-    transition: color 0.3s ease;
+    border-bottom: 1px dashed rgba(127,211,255,0.16);
 }
 
-a:hover {
-    color: #80dfff;
+a:hover { color: #bfefff; }
+
+/* CTA / download link */
+a.download {
+    display: inline-block;
+    background: linear-gradient(90deg, rgba(127,211,255,0.06), rgba(185,155,80,0.04));
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    color: var(--link);
+    border: 1px solid rgba(255,255,255,0.04);
 }
 
+/* iframe styling */
 iframe {
+    width: 100%;
     border: none;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    min-height: 420px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
 }
 
+/* responsive */
+@media (max-width: 880px) {
+    nav .nav-inner { padding: 0.9rem 1rem; }
+    .image img { width: 180px; height: 180px; }
+    section { margin: 3.5rem 1rem; padding: 2.2rem; }
+    h1 { font-size: 2.8rem; }
+    h2 { font-size: 2.2rem; }
+}
+
+@media (max-width: 640px) {
+    nav .links { display: none; } /* simple mobile - hide links, keep page compact */
+    nav .logo { font-size: 1.6rem; }
+    body { padding-top: 6.5rem; }
+    section { padding: 1.6rem; margin: 2.4rem 0.8rem; }
+    p { font-size: 1.5rem; line-height: 2.2rem; }
+}
