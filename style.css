@@ -212,3 +212,78 @@ iframe {
     section { padding: 1.6rem; margin: 2.4rem 0.8rem; }
     p { font-size: 1.5rem; line-height: 2.2rem; }
 }
+
+.mini-toc{
+  position: sticky; top: 0; z-index: 5;
+  display: flex; gap: 1rem; align-items: center; overflow-x: auto;
+  padding: .75rem 1rem;
+  background: var(--bg-overlay);
+  border-bottom: 1px solid var(--glass-border);
+}
+.mini-toc a{ text-decoration: none; font-weight: 600; opacity: .9; }
+.mini-toc a:hover,.mini-toc a:focus{ opacity: 1; text-decoration: underline; }
+
+.meta{ font-size: .95rem; color: var(--muted); margin-top: .25rem; }
+
+.cta-row{ display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1rem; }
+.cta-row a{
+  display: inline-block; padding: .6rem .9rem;
+  border-radius: 8px; border: 1px solid var(--glass-border);
+}
+.cta-row a:hover{ transform: translateY(-1px); }
+
+.key-points{ margin: .5rem 0 0 0; padding-left: 1.2rem; }
+.key-points li{
+  margin: .25rem 0;
+  font-size: 1.6rem;      /* increase text size for bullets */
+  line-height: 2.6rem;
+}
+
+.gallery{
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: .75rem;
+}
+.gallery figure{
+  grid-column: span 6; /* 2-up desktop */
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: .5rem;
+}
+.gallery img{ width: 100%; height: auto; display: block; border-radius: calc(var(--radius) - 4px); }
+.gallery figcaption{ font-size: .9rem; color: var(--muted); margin-top: .35rem; }
+@media (max-width: 880px){ .gallery figure{ grid-column: span 12; } } /* 1-up mobile */
+
+.pdf-embed{
+  width: 100%;
+  aspect-ratio: 3/4;
+  border: 0;
+  border-radius: var(--radius);
+}
+
+.anchor-offset{ scroll-margin-top: 76px; }
+#feature-image {
+  margin: 2.5rem auto;
+  max-width: 1100px; /* match section max-width */
+}
+.feature-image {
+  border-radius: calc(var(--radius) - 4px);
+  overflow: hidden;               /* clip image to rounded corners */
+  background: linear-gradient(180deg, rgba(18,18,18,0.55), rgba(18,18,18,0.35));
+  border: 1px solid var(--glass-border);
+  padding: 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+.feature-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.feature-image figcaption{
+  padding: 1rem;
+  font-size: 1.3rem;
+  color: var(--muted);
+  background: transparent;
+}
