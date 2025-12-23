@@ -260,12 +260,15 @@ iframe {
   overflow: hidden;
   background: var(--card-bg);
   border: 1px solid var(--glass-border);
+  box-sizing: border-box;
 }
 
 .feature-image img {
   width: 100%;
+  max-width: 100%;
   height: auto;
   display: block;
+  object-fit: contain;
 }
 
 .feature-image figcaption {
@@ -440,7 +443,7 @@ iframe {
     section {
       margin: 1.5rem 0.5rem;
       padding: 1.2rem;
-      border-radius: 10px;
+      overflow: hidden;
     }
     
     nav .nav-inner {
@@ -460,7 +463,8 @@ iframe {
     }
     
     .feature-image {
-    margin: 0.75rem 0;
+    margin: 0.75rem -0.25rem;
+    width: calc(100% + 0.5rem);
     border-radius: 8px;
   }
   
