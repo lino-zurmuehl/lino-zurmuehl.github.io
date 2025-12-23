@@ -301,6 +301,30 @@ iframe {
   color: var(--accent);
 }
 
+/* Hero intro - image with text side by side */
+.hero-intro {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin-bottom: 2.5rem;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hero-text h1 {
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.hero-text h2 {
+  margin-bottom: 0;
+  text-align: left;
+}
+
 /* responsive */
 @media (max-width: 880px) {
     nav .nav-inner { padding: 0.9rem 1rem; }
@@ -317,6 +341,10 @@ iframe {
     .mini-toc a {
       font-size: 1.2rem;
       padding: 0.4rem 0.6rem;
+    }
+    
+    .hero-intro {
+      gap: 2rem;
     }
 }
 
@@ -491,5 +519,9 @@ iframe {
     .key-points li {
       font-size: 1.4rem;
       line-height: 2.2rem;
+    }
+    
+    .hero-intro {
+      gap: 1rem;
     }
 }
