@@ -10,6 +10,11 @@
     <nav>
         <div class="nav-inner">
             <a class="logo" href="index.html"><span class="dot"></span>Lino Zurmühl</a>
+            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div class="links" role="navigation" aria-label="main navigation">
                 <a href="index.html">Home</a>
                 <a href="thesis.html">Master Thesis</a>
@@ -24,13 +29,33 @@
         <p>You can view my CV below or <a href="./images/CV_Zurmuehl-1.pdf" download>download it here</a>.</p>
         
         <!-- Embed the PDF viewer -->
-        <iframe src="./images/CV_Zurmuehl-1.pdf" width="100%" height="800px"></iframe>
+        <iframe class="pdf-embed" src="./images/CV_Zurmuehl-1.pdf" title="Lino Zurmühl CV"></iframe>
     </section>
+    
     <script>
     (function(){
         const current = location.pathname.split('/').pop() || 'index.html';
-        document.querySelectorAll('nav a').forEach(a => {
+        document.querySelectorAll('nav .links a').forEach(a => {
             if (a.getAttribute('href') === current) a.classList.add('active');
+        });
+        
+        // Mobile menu toggle
+        const toggle = document.querySelector('.menu-toggle');
+        const links = document.querySelector('nav .links');
+        
+        toggle.addEventListener('click', () => {
+            const isOpen = links.classList.toggle('open');
+            toggle.classList.toggle('active');
+            toggle.setAttribute('aria-expanded', isOpen);
+        });
+        
+        // Close menu when clicking a link
+        links.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                links.classList.remove('open');
+                toggle.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false');
+            });
         });
     })();
     </script>
