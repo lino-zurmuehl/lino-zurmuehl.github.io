@@ -10,6 +10,11 @@
     <nav>
     <div class="nav-inner">
         <a class="logo" href="index.html"><span class="dot"></span>Lino Zurmühl</a>
+        <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <div class="links" role="navigation" aria-label="main navigation">
         <a href="index.html">Home</a>
         <a href="thesis.html">Master Thesis</a>
@@ -23,7 +28,7 @@
         <div class="container"></div>
         <h1>Lino Zurmühl</h1>
         <div class="image">
-            <img src= "./images/Headshot_Zurmuehl.jpg">
+            <img src= "./images/Headshot_Zurmuehl.jpg" alt="Lino Zurmühl headshot">
         </div>
         <h2>Data Science / Political Science</h2>
 
@@ -33,11 +38,31 @@
         
         <p>Now, as a research assistant at the Max Planck Institute for Human Development, I work at the Center for Humans and Machines as an AI Behaviorist. I'm excited to continue expanding my expertise through the Master of Data Science for Public Policy program at Hertie School, where I look forward to combining my skills with a passion for creating positive societal impact.</p>
     </section>
+    
     <script>
     (function(){
         const current = location.pathname.split('/').pop() || 'index.html';
-        document.querySelectorAll('nav a').forEach(a => {
+        document.querySelectorAll('nav .links a').forEach(a => {
             if (a.getAttribute('href') === current) a.classList.add('active');
+        });
+        
+        // Mobile menu toggle
+        const toggle = document.querySelector('.menu-toggle');
+        const links = document.querySelector('nav .links');
+        
+        toggle.addEventListener('click', () => {
+            const isOpen = links.classList.toggle('open');
+            toggle.classList.toggle('active');
+            toggle.setAttribute('aria-expanded', isOpen);
+        });
+        
+        // Close menu when clicking a link
+        links.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                links.classList.remove('open');
+                toggle.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false');
+            });
         });
     })();
     </script>    

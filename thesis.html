@@ -12,6 +12,11 @@
   <nav>
     <div class="nav-inner">
       <a class="logo" href="index.html"><span class="dot"></span>Lino Zurmühl</a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <div class="links" role="navigation" aria-label="main navigation">
         <a href="index.html">Home</a>
         <a href="thesis.html">Master Thesis</a>
@@ -193,8 +198,27 @@
 
     (function () {
       var here = location.pathname.split('/').pop() || 'index.html';
-      document.querySelectorAll('header nav a').forEach(function (a) {
+      document.querySelectorAll('header nav .links a').forEach(function (a) {
         if (a.getAttribute('href') === here) a.classList.add('active');
+      });
+      
+      // Mobile menu toggle
+      var toggle = document.querySelector('.menu-toggle');
+      var links = document.querySelector('nav .links');
+      
+      toggle.addEventListener('click', function() {
+        var isOpen = links.classList.toggle('open');
+        toggle.classList.toggle('active');
+        toggle.setAttribute('aria-expanded', isOpen);
+      });
+      
+      // Close menu when clicking a link
+      links.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          links.classList.remove('open');
+          toggle.classList.remove('active');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
       });
     }());
   </script>
