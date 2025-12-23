@@ -25,17 +25,18 @@
   <!-- Sticky mini-TOC -->
   <nav class="mini-toc" aria-label="Section navigation">
     <a href="#abstract">Abstract</a>
+    <a href="#introduction">Introduction</a>
     <a href="#methods">Methods</a>
     <a href="#results">Results</a>
-    <a href="#figures">Figures</a>
     <a href="#downloads">PDF</a>
     <a href="#cite">How to cite</a>
   </nav>
 
   <main>
     <!-- Hero -->
-    <section class="anchor-offset">
-      <h1>Reading Between the Lines: Fine-Tuning Language Models for Context-Aware Dog Whistle Detection</h1>
+    <section class="hero anchor-offset">
+      <h1>Reading Between the Lines</h1>
+      <p class="subtitle">Fine-Tuning Language Models for Context-Aware Dog Whistle Detection</p>
       <div class="meta">
         Lino Zurmuehl • Hertie School — Data Science Lab • 2025
       </div>
@@ -48,126 +49,138 @@
     <!-- Abstract -->
     <section id="abstract" class="anchor-offset">
       <h2>Abstract</h2>
-      <p>This thesis explores the automated detection of "dog whistles", coded language used to signal often harmful messages to specific groups while appearing innocuous to others. This phenomenon, increasingly prevalent online as "algospeak" to evade moderation, presents a significant challenge due to its context-dependent nature. This project utilized the Silent Signals dataset, employing confident learning and manual review to mitigate labeling noise. I fine-tuned RoBERTa and Gemma 2, evaluating their performance on detecting right-wing dog whistles in Reddit posts. While RoBERTa was fully fine-tuned, the Gemma 2 model was adapted through Low Rank Adaptation. After the fine-tuning process, RoBERTa showed stronger in-distribution performance, while Gemma 2 demonstrated better generalization on manually labeled external data. Both models underperformed human annotators and proprietary systems, highlighting the task’s complexity and the limitations of current methods and data quality. The findings underscore the need for refined datasets and context-aware models to effectively address subtle, coded communication in digital spaces.</p>
+      <p>This thesis explores the automated detection of "dog whistles", coded language used to signal often harmful messages to specific groups while appearing innocuous to others.</p>
+      <p>This phenomenon, increasingly prevalent online as "algospeak" to evade moderation, presents a significant challenge due to its context-dependent nature. This project utilized the Silent Signals dataset, employing confident learning and manual review to mitigate labeling noise.</p>
+      <p>I fine-tuned RoBERTa and Gemma 2, evaluating their performance on detecting right-wing dog whistles in Reddit posts. While RoBERTa was fully fine-tuned, the Gemma 2 model was adapted through Low Rank Adaptation. After the fine-tuning process, RoBERTa showed stronger in-distribution performance, while Gemma 2 demonstrated better generalization on manually labeled external data.</p>
+      <p>Both models underperformed human annotators and proprietary systems, highlighting the task's complexity and the limitations of current methods and data quality. The findings underscore the need for refined datasets and context-aware models to effectively address subtle, coded communication in digital spaces.</p>
     </section>
 
-    <section id="feature-image" class="anchor-offset">
-      <figure class="feature-image">
-        <img src="images/thesis/combined_label_update_plots.png" alt="Distribution of Dog Whistle Labels and Manual Corrections" loading="lazy" />
-          <figcaption>Distribution of Dog Whistle Labels and Manual Corrections.</figcaption>
-      </figure>
-    </section> 
-
-     <section id="poster-intro" class="anchor-offset">
+    <!-- Introduction -->
+    <section id="introduction" class="anchor-offset">
       <h2>Introduction</h2>
-      <p>Dog whistles are coded language used to signal harmful messages to specific groups while appearing innocuous to others. This phenomenon has become increasingly prevalent online as “algospeak” to evade content moderation.</p>
+      <p>Dog whistles are coded language used to signal harmful messages to specific groups while appearing innocuous to others. This phenomenon has become increasingly prevalent online as "algospeak" to evade content moderation.</p>
 
-      <p><strong>Why Dog Whistles Matter:</strong></p>
+      <h3>Why Dog Whistles Matter</h3>
       <ul class="key-points">
         <li>They enable the spread of hate speech while avoiding algorithmic detection</li>
         <li>They contribute to political polarization</li>
         <li>They present unique challenges for content moderation</li>
       </ul>
 
-      <p><strong>Research Question:</strong></p>
+      <h3>Research Question</h3>
       <p>How effective are fine-tuned language models in accurately classifying implicit hate speech characterized as right-wing dog whistles in Reddit posts?</p>
 
-      <p><strong>Theoretical Perspectives (Henderson &amp; McCready, 2018)</strong></p>
+      <h3>Theoretical Perspectives</h3>
+      <p class="citation">Henderson &amp; McCready, 2018</p>
       <ul class="key-points">
-        <li>Conventional Implicature: Dog whistles convey hidden meanings encoded within language</li>
-        <li>Inferentialist: Dog whistles activate listeners’ pre-existing beliefs</li>
-        <li>Game-Theoretic: Dog whistles maintain plausible deniability</li>
-        <li>Mixed View: Combines inference and strategic design</li>
+        <li><strong>Conventional Implicature:</strong> Dog whistles convey hidden meanings encoded within language</li>
+        <li><strong>Inferentialist:</strong> Dog whistles activate listeners' pre-existing beliefs</li>
+        <li><strong>Game-Theoretic:</strong> Dog whistles maintain plausible deniability</li>
+        <li><strong>Mixed View:</strong> Combines inference and strategic design</li>
       </ul>
     </section>
 
-    <section id="feature-image" class="anchor-offset">
+    <!-- Data Visualization -->
+    <section id="data-visualization" class="anchor-offset">
       <figure class="feature-image">
-        <img src="images/thesis/Gemma2_finetune.png" alt="Finetuning pipeline visualized" loading="lazy" />
-        <figcaption>Gemma2 finetuning pipeline.</figcaption>
+        <img src="images/thesis/combined_label_update_plots.png" alt="Bar chart showing distribution of 69,533 false labels and 30,449 true labels, alongside horizontal bar chart of top 30 dog whistles including terms like 'single', 'based', 'blow', 'SJW', and 'MAGA'" loading="lazy" />
+        <figcaption>Distribution of Dog Whistle Labels and Manual Corrections.</figcaption>
       </figure>
-    </section> 
+    </section>
 
     <!-- Methods -->
     <section id="methods" class="anchor-offset">
       <h2>Methods</h2>
-        <p>This project utilized the "Silent Signals" dataset, which contains thousands of dog whistle and non-dog whistle texts from Reddit. To improve data quality, I employed Confident Learning to identify and manually review over 2,000 potential labeling errors. Two main models were fine-tuned for the classification task:</p>
-        <ul class="key-points">
-          <li><strong>RoBERTa (355M parameters):</strong> A transformer-based model that was fully fine-tuned for the task.</li>
-          <li><strong>Gemma 2 (2B parameters):</strong> Gernerative language model with an classification head adapted using Low-Rank Adaptation (LoRA), which is a parameter-efficient fine-tuning technique.</li>
-        </ul>
+      <p>This project utilized the "Silent Signals" dataset, which contains thousands of dog whistle and non-dog whistle texts from Reddit. To improve data quality, I employed Confident Learning to identify and manually review over 2,000 potential labeling errors.</p>
+      
+      <h3>Models</h3>
+      <ul class="key-points">
+        <li><strong>RoBERTa (355M parameters):</strong> A transformer-based model that was fully fine-tuned for the task.</li>
+        <li><strong>Gemma 2 (2B parameters):</strong> Generative language model with a classification head adapted using Low-Rank Adaptation (LoRA), a parameter-efficient fine-tuning technique.</li>
+      </ul>
     </section>
 
-    <section id="feature-image" class="anchor-offset">
-      <figure class="feature-image" style="width:50%; max-width:720px; margin:1.5rem auto; padding:0;">
-        <img src="images/thesis/eval_roc_curve_combined.png" alt="ROC/AUC curves comparing models on in-distribution test set" loading="lazy" style="width:100%; height:auto; display:block;" />
-        <figcaption style="text-align:center; padding:.8rem 0; color:var(--muted);">ROC/AUC curves on the in-distribution test set.</figcaption>
+    <!-- Pipeline Visualization -->
+    <section id="pipeline-visualization" class="anchor-offset">
+      <figure class="feature-image">
+        <img src="images/thesis/Gemma2_finetune.png" alt="Flowchart showing Gemma 2 fine-tuning pipeline: input text passes through frozen Gemma 2 base model, then through LoRA adapter layers, to classification head outputting dog whistle probability" loading="lazy" />
+        <figcaption>Gemma 2 fine-tuning pipeline using Low-Rank Adaptation.</figcaption>
       </figure>
     </section>
 
     <!-- Results -->
     <section id="results" class="anchor-offset">
-    <h2>Results (at a glance)</h2>
-    <ul class="key-points">
-      <li><strong>In-distribution:</strong>
-        <ul>
-          <li>RoBERTa — 90% accuracy, F1 = 0.82</li>
-          <li>Gemma 2 — 88% accuracy, F1 = 0.76</li>
-        </ul>
-      </li>
-      <li><strong>Out-of-distribution:</strong>
-        <ul>
-          <li>RoBERTa — 46% accuracy, F1 = 0.04</li>
-          <li>Gemma 2 — 64% accuracy, F1 = 0.51</li>
-          <li>Human baseline — 67% accuracy</li>
-          <li>GPT-4 — 87% accuracy</li>
-        </ul>
-      </li>
-    </ul>
+      <h2>Results</h2>
+      
+      <div class="results-grid">
+        <div class="result-card">
+          <h3>In-Distribution Performance</h3>
+          <ul class="key-points">
+            <li>RoBERTa — <strong>90%</strong> accuracy, F1 = 0.82</li>
+            <li>Gemma 2 — <strong>88%</strong> accuracy, F1 = 0.76</li>
+          </ul>
+        </div>
+        <div class="result-card">
+          <h3>Out-of-Distribution Performance</h3>
+          <ul class="key-points">
+            <li>RoBERTa — <strong>46%</strong> accuracy, F1 = 0.04</li>
+            <li>Gemma 2 — <strong>64%</strong> accuracy, F1 = 0.51</li>
+            <li>Human baseline — <strong>67%</strong> accuracy</li>
+            <li>GPT-4 — <strong>87%</strong> accuracy</li>
+          </ul>
+        </div>
+      </div>
 
-    <h2>Key Findings</h2>
+      <h3>Key Findings</h3>
       <ul class="key-points">
         <li>RoBERTa performs better in-distribution but struggles to generalize</li>
         <li>Gemma 2 shows more robust performance across domains</li>
         <li>Both models underperform compared to human annotators and proprietary systems</li>
         <li>Data quality significantly impacts model effectiveness</li>
-        <li>Temporal concentration of data (2016-2020) introduces bias</li>
+        <li>Temporal concentration of data (2016–2020) introduces bias</li>
       </ul>
-      <h2>Future Work</h2>
+
+      <h3>Future Work</h3>
       <ul class="key-points">
         <li>More diverse, manually-verified datasets</li>
         <li>Multi-lingual and cross-cultural dog whistle detection</li>
         <li>Real-time adaptation to emerging coded language</li>
-        <li>Exploration of other model architectures like modernBERT or Gemma 3</li>
+        <li>Exploration of other model architectures like ModernBERT or Gemma 3</li>
       </ul>
     </section>
-    <section id="feature-image" class="anchor-offset">
-      <figure class="feature-image">
-          <img src="images/thesis/count_over_time_smoothed.png" alt="Distribution of reddit posts over time" loading="lazy" />
-          <figcaption>Number of Reddit posts over time by label with moving average of a six month span.</figcaption>
 
+    <!-- ROC Curve -->
+    <section id="roc-visualization" class="anchor-offset">
+      <figure class="feature-image feature-image--narrow">
+        <img src="images/thesis/eval_roc_curve_combined.png" alt="ROC curve comparison showing RoBERTa achieving AUC of 0.94 versus Gemma 2 with AUC of 0.91 on in-distribution test set" loading="lazy" />
+        <figcaption>ROC/AUC curves comparing RoBERTa (AUC: 0.94) and Gemma 2 (AUC: 0.91) on the in-distribution test set.</figcaption>
       </figure>
     </section>
 
-    <!-- Poster & PDF embeds -->
+    <!-- Timeline -->
+    <section id="timeline-visualization" class="anchor-offset">
+      <figure class="feature-image">
+        <img src="images/thesis/count_over_time_smoothed.png" alt="Line chart showing Reddit post volume from 2016 to 2020, with dog whistle posts (orange) and non-dog whistle posts (blue) following similar temporal patterns with peaks around 2018" loading="lazy" />
+        <figcaption>Number of Reddit posts over time by label with 6-month moving average, showing temporal concentration between 2016–2020.</figcaption>
+      </figure>
+    </section>
+
+    <!-- Full Thesis PDF -->
     <section id="downloads" class="anchor-offset">
       <h2>Full Thesis</h2>
-      <iframe class="pdf-embed" src="images\zurmuehl_lino_master_thesis_print.pdf#view=FitH" loading="lazy" title="Master thesis full PDF"></iframe>
-
-      <div class="cta-row" style="margin-top:1rem">
+      <iframe class="pdf-embed" src="images/zurmuehl_lino_master_thesis_print.pdf#view=FitH" loading="lazy" title="Master thesis full PDF"></iframe>
+      <div class="cta-row">
         <a href="images/zurmuehl_lino_master_thesis_print.pdf" target="_blank" rel="noopener">Open thesis in new tab</a>
       </div>
     </section>
 
     <!-- How to cite -->
     <section id="cite" class="anchor-offset">
-      <h2>How to cite</h2>
-      <p>
-        Zurmuehl, L. (2025). <em>Reading Between the Lines: Fine-Tuning Language Models for Context-Aware
-        Dog Whistle Detection</em>. Master’s Thesis, Hertie School.
-        <br />
-        <small>(You can also link directly to the PDF above.)</small>
-      </p>
+      <h2>How to Cite</h2>
+      <div class="citation-block">
+        <p>Zurmuehl, L. (2025). <em>Reading Between the Lines: Fine-Tuning Language Models for Context-Aware Dog Whistle Detection</em>. Master's Thesis, Hertie School.</p>
+      </div>
+      <p><small>You can also link directly to the <a href="images/zurmuehl_lino_master_thesis_print.pdf" target="_blank" rel="noopener">PDF</a>.</small></p>
     </section>
   </main>
 
@@ -176,10 +189,8 @@
   </footer>
 
   <script>
-    // Year stamp
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Mark active nav link based on current path
     (function () {
       var here = location.pathname.split('/').pop() || 'index.html';
       document.querySelectorAll('header nav a').forEach(function (a) {
