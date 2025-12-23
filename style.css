@@ -252,6 +252,36 @@ iframe {
     box-shadow: 0 10px 30px rgba(0,0,0,0.45);
 }
 
+/* Feature images - ensure they fit container */
+.feature-image {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+}
+
+.feature-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.feature-image figcaption {
+  padding: 1rem;
+  font-size: 1.3rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Narrow variant for smaller charts like ROC curve */
+.feature-image--narrow {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* responsive */
 @media (max-width: 880px) {
     nav .nav-inner { padding: 0.9rem 1rem; }
@@ -382,9 +412,28 @@ iframe {
     .citation-block p {
       font-size: 1.4rem;
     }
+    
+    /* Fix images to match text width on mobile */
+  .feature-image {
+    margin: 1rem 0;
+    border-radius: 10px;
+  }
+  
+  .feature-image img {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .feature-image--narrow {
+    max-width: 100%;
+  }
+  
+  .feature-image figcaption {
+    font-size: 1.1rem;
+    padding: 0.75rem;
+  }
 }
 
-/* Extra small screens */
 @media (max-width: 400px) {
     html { font-size: 9px; }
     
@@ -409,4 +458,14 @@ iframe {
       width: 120px;
       height: 120px;
     }
+    
+    .feature-image {
+    margin: 0.75rem 0;
+    border-radius: 8px;
+  }
+  
+  .feature-image figcaption {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
 }
