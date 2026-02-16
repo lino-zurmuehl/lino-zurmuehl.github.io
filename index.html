@@ -26,7 +26,8 @@
     </div>
     </nav>
 
-    <section id="home">
+    <main>
+    <section id="home" class="anchor-offset">
         <div class="hero-intro">
             <div class="image">
                 <img src="./images/Headshot_Zurmuehl.jpg" alt="Lino Zurmühl headshot" width="3342" height="4999" decoding="async">
@@ -37,14 +38,55 @@
             </div>
         </div>
 
-        <p>I'm Lino, and my fascination with the power of data has been growing since my early high school days. It all began in 11th grade with a presentation on the Cambridge Analytica scandal, which opened my eyes to how data shapes politics and society. This experience sparked my interest in political science and the transformative potential of data in this field.</p>
+        <div class="prose">
+            <h3>Background</h3>
+            <p>I'm Lino, and my fascination with the power of data has been growing since my early high school days. It all began in 11th grade with a presentation on the Cambridge Analytica scandal, which opened my eyes to how data shapes politics and society. This experience sparked my interest in political science and the transformative potential of data in this field.</p>
+            
+            <h3>Research &amp; Methods</h3>
+            <p>During my undergraduate studies, I developed expertise in statistical analysis, machine learning, and Computational Social Science. My passion led me to explore sentiment analysis in political science for my bachelor's thesis, focusing on how data can uncover new insights into public opinion. At GESIS, during my internship, I further deepened my knowledge by working with Python to build NLP/classification models, analyzing hate speech and slur usage on Twitter.</p> 
+            
+            <h3>Applied Work</h3>
+            <p>As a research assistant at the Max Planck Institute for Human Development, I worked at the Center for Humans and Machines as an AI Behaviorist. As an AI Behaviorist, I designed and deployed behavioral experiments using Qualtrics and Python (oTree), integrating AI chatbots through Fast API and prompt engineering. This role encompassed the full project lifecycle, from theoretical experimental design, the back-end and front-end development of experimental applications, and data analysis of the experimental results. Additionally, I developed conversational AI software for a Furhat humanoid robot to promote a summer school program.</p>
         
-        <p>During my undergraduate studies, I developed expertise in statistical analysis, machine learning, and Computational Social Science. My passion led me to explore sentiment analysis in political science for my bachelor's thesis, focusing on how data can uncover new insights into public opinion. At GESIS, during my internship, I further deepened my knowledge by working with Python to build NLP/classification models, analyzing hate speech and slur usage on Twitter.</p> 
-        
-        <p>As a research assistant at the Max Planck Institute for Human Development, I worked at the Center for Humans and Machines as an AI Behaviorist. As an AI Behaviorist, I designed and deployed behavioral experiments using Qualtrics and Python (oTree), integrating AI chatbots through Fast API and prompt engineering. This role encompassed the full project lifecycle, from theoretical experimental design, the back-end and front-end development of experimental applications, and data analysis of the experimental results. Additionally, I developed conversational AI software for a Furhat humanoid robot to promote a summer school program.</p>
-    
-        <p>Currently, I'm finishing up my master's degree in an exchange program at the University FGV Sao Paulo focusing on AI Regulation and Ethics.</p>
+            <h3>Current Focus</h3>
+            <p>Currently, I'm finishing up my master's degree in an exchange program at the University FGV Sao Paulo focusing on AI Regulation and Ethics.</p>
+        </div>
+
+        <h3>Highlights</h3>
+        <ul class="key-points">
+            <li>Computational social science with a focus on NLP and content moderation</li>
+            <li>Behavioral experiments and human-AI interaction research</li>
+            <li>Applied ML workflows from data cleaning to evaluation and reporting</li>
+            <li>Experience with Python, R, Shiny, and interactive data visualization</li>
+        </ul>
     </section>
+
+    <section id="projects" class="anchor-offset">
+        <h2>Selected Projects</h2>
+        <div class="projects-grid">
+            <article class="project-card">
+                <h3>Master Thesis: Reading Between the Lines</h3>
+                <p>Fine-tuned language models for context-aware dog whistle detection, with evaluation across in- and out-of-distribution data.</p>
+                <div class="project-actions">
+                    <a class="button" href="thesis.html">Explore thesis</a>
+                    <a class="button ghost" href="images/zurmuehl_lino_master_thesis_print.pdf" target="_blank" rel="noopener">Open PDF</a>
+                </div>
+            </article>
+            <article class="project-card">
+                <h3>IOM Missing Migrants</h3>
+                <p>Interactive Shiny app with a Leaflet map and incident summaries by route, year, and region.</p>
+                <div class="project-actions">
+                    <a class="button" href="missing_migrants.html">View project</a>
+                    <a class="button ghost" href="https://github.com/lino-zurmuehl/IOM_Missing_Migrants" target="_blank" rel="noopener">View code</a>
+                </div>
+            </article>
+        </div>
+    </section>
+    </main>
+
+    <footer>
+        <small>&copy; <span id="y"></span> Lino Zurmühl</small>
+    </footer>
     
     <script src="nav.js" defer></script>
 </body>
