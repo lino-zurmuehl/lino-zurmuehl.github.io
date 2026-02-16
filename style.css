@@ -21,11 +21,19 @@ html { font-size: 10px; }
 
 body {
     position: relative;
-    background: linear-gradient(rgba(184,178,166,0.08), rgba(184,178,166,0.08)), url("./images/DALL_E.png") center/cover no-repeat fixed;
+    background-image: linear-gradient(rgba(184,178,166,0.08), rgba(184,178,166,0.08)), url("./images/DALL_E.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     font-family: 'Roboto', 'Helvetica', Arial, sans-serif;
     color: #fff;
-    padding-top: 10rem; /* Main nav + mini-toc */
+    padding-top: 7.5rem;
     min-height: 100vh;
+}
+
+body.has-mini-toc {
+    padding-top: 11rem;
 }
 
 /* header / nav */
@@ -73,6 +81,40 @@ nav .links {
     display: flex;
     gap: 1rem;
     align-items: center;
+}
+
+.menu-toggle {
+    display: none;
+    width: 40px;
+    height: 36px;
+    padding: 0.6rem;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    width: 100%;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 999px;
+    transition: transform 150ms ease, opacity 150ms ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
 }
 
 nav a {
@@ -385,10 +427,21 @@ iframe {
     }
     
     nav .logo { font-size: 1.6rem; }
-    body { padding-top: 6.5rem; }
+    body {
+      padding-top: 6.5rem;
+      background-attachment: scroll;
+    }
+
+    body.has-mini-toc {
+      padding-top: 9.5rem;
+    }
     section { padding: 1.6rem; margin: 2.4rem 0.8rem; overflow: hidden; }
     p { font-size: 1.5rem; line-height: 2.2rem; }
     
+    nav {
+      backdrop-filter: none;
+    }
+
     /* Hide mini-TOC on mobile */
     .mini-toc {
       display: none;
@@ -478,6 +531,18 @@ iframe {
     
     .citation-block p {
       font-size: 1.4rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    nav,
+    .mini-toc {
+      backdrop-filter: none;
+    }
+
+    nav a,
+    .menu-toggle span {
+      transition: none;
     }
 }
 

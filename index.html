@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href ='./style.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="./style.css">
     <title>Lino Zurmühl</title>
 </head>
 <body>
     <nav>
     <div class="nav-inner">
         <a class="logo" href="index.html"><span class="dot"></span>Lino Zurmühl</a>
-        <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav">
             <span></span>
             <span></span>
             <span></span>
         </button>
-        <div class="links" role="navigation" aria-label="main navigation">
+        <div class="links" id="site-nav" role="navigation" aria-label="main navigation">
         <a href="index.html">Home</a>
         <a href="thesis.html">Master Thesis</a>
         <a href="missing_migrants.html">IOM Missing Migrants Project</a>
@@ -27,7 +29,7 @@
     <section id="home">
         <div class="hero-intro">
             <div class="image">
-                <img src="./images/Headshot_Zurmuehl.jpg" alt="Lino Zurmühl headshot">
+                <img src="./images/Headshot_Zurmuehl.jpg" alt="Lino Zurmühl headshot" width="3342" height="4999" decoding="async">
             </div>
             <div class="hero-text">
                 <h1>Lino Zurmühl</h1>
@@ -44,32 +46,6 @@
         <p>Currently, I'm finishing up my master's degree in an exchange program at the University FGV Sao Paulo focusing on AI Regulation and Ethics.</p>
     </section>
     
-    <script>
-    (function(){
-        const current = location.pathname.split('/').pop() || 'index.html';
-        document.querySelectorAll('nav .links a').forEach(a => {
-            if (a.getAttribute('href') === current) a.classList.add('active');
-        });
-        
-        // Mobile menu toggle
-        const toggle = document.querySelector('.menu-toggle');
-        const links = document.querySelector('nav .links');
-        
-        toggle.addEventListener('click', () => {
-            const isOpen = links.classList.toggle('open');
-            toggle.classList.toggle('active');
-            toggle.setAttribute('aria-expanded', isOpen);
-        });
-        
-        // Close menu when clicking a link
-        links.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => {
-                links.classList.remove('open');
-                toggle.classList.remove('active');
-                toggle.setAttribute('aria-expanded', 'false');
-            });
-        });
-    })();
-    </script>    
+    <script src="nav.js" defer></script>
 </body>
 </html>

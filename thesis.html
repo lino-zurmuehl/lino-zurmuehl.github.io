@@ -5,19 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Master Thesis — Reading Between the Lines</title>
   <meta name="description" content="Master thesis page with abstract, methods, results, figures, and downloads." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="has-mini-toc">
   <header>
   <nav>
     <div class="nav-inner">
       <a class="logo" href="index.html"><span class="dot"></span>Lino Zurmühl</a>
-      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav">
         <span></span>
         <span></span>
         <span></span>
       </button>
-      <div class="links" role="navigation" aria-label="main navigation">
+      <div class="links" id="site-nav" role="navigation" aria-label="main navigation">
         <a href="index.html">Home</a>
         <a href="thesis.html">Master Thesis</a>
         <a href="missing_migrants.html">IOM Missing Migrants Project</a>
@@ -88,7 +90,7 @@
     <!-- Data Visualization -->
     <section id="data-visualization" class="anchor-offset">
       <figure class="feature-image">
-        <img src="images/thesis/combined_label_update_plots.png" alt="Bar chart showing distribution of 69,533 false labels and 30,449 true labels, alongside horizontal bar chart of top 30 dog whistles including terms like 'single', 'based', 'blow', 'SJW', and 'MAGA'" loading="lazy" />
+        <img src="images/thesis/combined_label_update_plots.png" alt="Bar chart showing distribution of 69,533 false labels and 30,449 true labels, alongside horizontal bar chart of top 30 dog whistles including terms like 'single', 'based', 'blow', 'SJW', and 'MAGA'" width="3021" height="1472" loading="lazy" decoding="async" />
         <figcaption>Distribution of Dog Whistle Labels and Manual Corrections.</figcaption>
       </figure>
     </section>
@@ -108,7 +110,7 @@
     <!-- Pipeline Visualization -->
     <section id="pipeline-visualization" class="anchor-offset">
       <figure class="feature-image">
-        <img src="images/thesis/Gemma2_finetune.png" alt="Flowchart showing Gemma 2 fine-tuning pipeline: input text passes through frozen Gemma 2 base model, then through LoRA adapter layers, to classification head outputting dog whistle probability" loading="lazy" />
+        <img src="images/thesis/Gemma2_finetune.png" alt="Flowchart showing Gemma 2 fine-tuning pipeline: input text passes through frozen Gemma 2 base model, then through LoRA adapter layers, to classification head outputting dog whistle probability" width="2136" height="878" loading="lazy" decoding="async" />
         <figcaption>Gemma 2 fine-tuning pipeline using Low-Rank Adaptation.</figcaption>
       </figure>
     </section>
@@ -157,7 +159,7 @@
     <!-- ROC Curve -->
     <section id="roc-visualization" class="anchor-offset">
       <figure class="feature-image feature-image--narrow">
-        <img src="images/thesis/eval_roc_curve_combined.png" alt="ROC curve comparison showing RoBERTa achieving AUC of 0.94 versus Gemma 2 with AUC of 0.91 on in-distribution test set" loading="lazy" />
+        <img src="images/thesis/eval_roc_curve_combined.png" alt="ROC curve comparison showing RoBERTa achieving AUC of 0.94 versus Gemma 2 with AUC of 0.91 on in-distribution test set" width="1772" height="1473" loading="lazy" decoding="async" />
         <figcaption>ROC/AUC curves comparing RoBERTa (AUC: 0.94) and Gemma 2 (AUC: 0.91) on the in-distribution test set.</figcaption>
       </figure>
     </section>
@@ -165,7 +167,7 @@
     <!-- Timeline -->
     <section id="timeline-visualization" class="anchor-offset">
       <figure class="feature-image">
-        <img src="images/thesis/count_over_time_smoothed.png" alt="Line chart showing Reddit post volume from 2016 to 2020, with dog whistle posts (orange) and non-dog whistle posts (blue) following similar temporal patterns with peaks around 2018" loading="lazy" />
+        <img src="images/thesis/count_over_time_smoothed.png" alt="Line chart showing Reddit post volume from 2016 to 2020, with dog whistle posts (orange) and non-dog whistle posts (blue) following similar temporal patterns with peaks around 2018" width="2971" height="1471" loading="lazy" decoding="async" />
         <figcaption>Number of Reddit posts over time by label with 6-month moving average, showing temporal concentration between 2016–2020.</figcaption>
       </figure>
     </section>
@@ -195,32 +197,7 @@
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
-
-    (function () {
-      var here = location.pathname.split('/').pop() || 'index.html';
-      document.querySelectorAll('header nav .links a').forEach(function (a) {
-        if (a.getAttribute('href') === here) a.classList.add('active');
-      });
-      
-      // Mobile menu toggle
-      var toggle = document.querySelector('.menu-toggle');
-      var links = document.querySelector('nav .links');
-      
-      toggle.addEventListener('click', function() {
-        var isOpen = links.classList.toggle('open');
-        toggle.classList.toggle('active');
-        toggle.setAttribute('aria-expanded', isOpen);
-      });
-      
-      // Close menu when clicking a link
-      links.querySelectorAll('a').forEach(function(a) {
-        a.addEventListener('click', function() {
-          links.classList.remove('open');
-          toggle.classList.remove('active');
-          toggle.setAttribute('aria-expanded', 'false');
-        });
-      });
-    }());
   </script>
+  <script src="nav.js" defer></script>
 </body>
 </html>
