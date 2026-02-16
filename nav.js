@@ -1,4 +1,9 @@
 (function () {
+  var yearEl = document.getElementById('y');
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+
   var navLinks = document.querySelectorAll('nav .links a');
   if (navLinks.length) {
     var current = location.pathname.split('/').pop() || 'index.html';
