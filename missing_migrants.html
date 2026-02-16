@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href='./style.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="./style.css">
     <title>IOM Missing Migrants Project</title>
 </head>
 <body>
     <nav>
     <div class="nav-inner">
         <a class="logo" href="index.html"><span class="dot"></span>Lino Zurmühl</a>
-        <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav">
             <span></span>
             <span></span>
             <span></span>
         </button>
-        <div class="links" role="navigation" aria-label="main navigation">
+        <div class="links" id="site-nav" role="navigation" aria-label="main navigation">
         <a href="index.html">Home</a>
         <a href="thesis.html">Master Thesis</a>
         <a href="missing_migrants.html">IOM Missing Migrants Project</a>
@@ -35,35 +37,9 @@
         <p>
             I designed a Leaflet map to visually represent the dataset, showcasing the reported incidents. Additionally, the bar plot displays the number of incidents per migration route. Users have the flexibility to choose the year, month, and region of interest, with both the map and bar plot updating dynamically based on their selections. You can access the code for my Shiny app <a href="https://github.com/lino-zurmuehl/IOM_Missing_Migrants">here</a>.
         </p>
-        <iframe src="https://linozurmuehl.shinyapps.io/shinyapp/" width="100%" height="650px" title="IOM Missing Migrants Shiny App"></iframe>
+        <iframe src="https://linozurmuehl.shinyapps.io/shinyapp/" width="100%" height="650px" title="IOM Missing Migrants Shiny App" loading="lazy"></iframe>
     </section>
     
-    <script>
-    (function(){
-        const current = location.pathname.split('/').pop() || 'index.html';
-        document.querySelectorAll('nav .links a').forEach(a => {
-            if (a.getAttribute('href') === current) a.classList.add('active');
-        });
-        
-        // Mobile menu toggle
-        const toggle = document.querySelector('.menu-toggle');
-        const links = document.querySelector('nav .links');
-        
-        toggle.addEventListener('click', () => {
-            const isOpen = links.classList.toggle('open');
-            toggle.classList.toggle('active');
-            toggle.setAttribute('aria-expanded', isOpen);
-        });
-        
-        // Close menu when clicking a link
-        links.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => {
-                links.classList.remove('open');
-                toggle.classList.remove('active');
-                toggle.setAttribute('aria-expanded', 'false');
-            });
-        });
-    })();
-    </script>
+    <script src="nav.js" defer></script>
 </body>
 </html>
