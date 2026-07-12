@@ -304,6 +304,55 @@ iframe{
 
 .citation-block p{margin:0}
 
+/* ---------- shiny app embed ---------- */
+.app-embed{
+    position:relative;margin:1.6rem 0 .6rem;
+    border:1.5px solid var(--line);
+    border-radius:60px 8px 70px 8px/8px 70px 8px 60px;
+    background:var(--paper);
+    min-height:56rem;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+}
+
+.app-embed iframe{
+    border:none;border-radius:0;
+    width:100%;height:78rem;min-height:56rem;
+    background:var(--paper);
+    transition:opacity .4s ease;
+}
+
+.app-load{
+    display:flex;flex-direction:column;align-items:center;gap:1.8rem;
+    width:100%;height:100%;padding:4rem 2rem;
+    background:transparent;border:none;cursor:pointer;
+    font-family:inherit;
+}
+
+.app-load svg{width:min(42rem,82%);height:auto;opacity:.8}
+
+.app-load-label{
+    font-size:1.4rem;color:var(--ink);letter-spacing:.04em;
+    border:1.5px solid var(--line);padding:.8rem 1.8rem;
+    border-radius:104px 9px 118px 9px/9px 118px 9px 104px;
+    transition:background .2s ease,color .2s ease;
+}
+
+.app-load:hover .app-load-label,
+.app-load:focus-visible .app-load-label{background:var(--ink);color:var(--paper)}
+
+.app-load:focus-visible{outline:none}
+
+.app-load-note{font-size:1.25rem;color:var(--ink-faint)}
+
+.app-waking{
+    position:absolute;top:1.4rem;left:0;right:0;
+    text-align:center;font-size:1.3rem;color:var(--ink-faint);
+    margin:0;max-width:none;
+}
+
+.app-fullscreen{font-size:1.4rem}
+
 /* ---------- footer ---------- */
 footer{
     text-align:center;color:var(--ink-faint);
