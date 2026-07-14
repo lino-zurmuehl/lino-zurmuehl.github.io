@@ -188,6 +188,28 @@ a:hover{text-decoration-color:var(--ink)}
 
 .portrait img{width:100%;height:auto;display:block;filter:grayscale(1) contrast(1.04);mix-blend-mode:multiply}
 
+/* ---------- charcoal network rail (home) ---------- */
+.netrail{
+    position:fixed;right:0;top:0;bottom:0;width:34rem;z-index:40;
+    display:none;pointer-events:none;
+    align-items:center;
+}
+
+.netrail svg{width:100%;height:86vh;overflow:visible}
+
+.netrail text{
+    font-family:'Work Sans',sans-serif;font-weight:400;font-size:10.5px;
+    letter-spacing:.12em;text-transform:uppercase;fill:var(--ink-soft);
+}
+
+@media (min-width:1200px){
+    .netrail{display:flex}
+    body.has-netrail main{
+        margin-left:max(2.4rem, calc((100vw - 76rem - 34rem)/2));
+        margin-right:auto;
+    }
+}
+
 /* ---------- sketch divider ---------- */
 .divider{padding:2.6rem 0 0}
 .divider svg{width:100%;height:auto;display:block;opacity:.8}
