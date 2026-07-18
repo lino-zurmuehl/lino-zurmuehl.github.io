@@ -3,12 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IOM Missing Migrants Project — Lino Zurmühl</title>
+    <meta name="description" content="Interactive Shiny app visualizing the IOM Missing Migrants dataset with a Leaflet map and incident summaries by route, year, and region.">
+    <link rel="canonical" href="https://lino-zurmuehl.github.io/missing_migrants.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="IOM Missing Migrants Project">
+    <meta property="og:description" content="Interactive Shiny app with a Leaflet map and incident summaries by route, year, and region.">
+    <meta property="og:url" content="https://lino-zurmuehl.github.io/missing_migrants.html">
+    <meta property="og:image" content="https://lino-zurmuehl.github.io/images/og-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta name="theme-color" content="#f6f3ec" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#23211c" media="(prefers-color-scheme: dark)">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Work+Sans:wght@300;400;500&display=swap">
     <link rel="stylesheet" href="./style.css">
-    <title>IOM Missing Migrants Project</title>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
     <nav class="site-nav">
     <div class="nav-inner">
         <a class="logo" href="index.html"><span class="dot"></span>Lino Zurmühl</a>
@@ -26,14 +44,14 @@
     </div>
     </nav>
 
-    <main>
+    <main id="main">
     <section id="MM" class="anchor-offset">
-        <h2>IOM Missing Migrants Project</h2>
+        <h1 class="page-title">IOM Missing Migrants Project</h1>
         <div class="prose">
-            <p>To practice my Leaflet and Shiny app skills, I started this small project with the IOM Missing Migrants dataset. 
+            <p>To practice my Leaflet and Shiny app skills, I started this small project with the IOM Missing Migrants dataset.
                 I obtained the data from <a href="https://www.kaggle.com/datasets/nelgiriyewithana/global-missing-migrants-dataset/data">Kaggle</a>.
             </p>
-            <p>The dataset encompasses details regarding the fatalities and disappearances of migrants globally. 
+            <p>The dataset encompasses details regarding the fatalities and disappearances of migrants globally.
                 It is meticulously compiled from diverse sources, including IOM field offices, media reports, and surveys. Updated on an annual basis, the dataset spans from 2014 to 2020. Curated by the International Organization for Migration's Missing Migrants Project, this repository serves as a comprehensive database documenting missing and deceased migrants.
             </p>
             <p>
@@ -66,9 +84,9 @@
     </main>
 
     <footer>
-        <small>&copy; <span id="y"></span> Lino Zurmühl</small>
+        <small>&copy; <span id="y"></span> Lino Zurmühl · <a href="https://github.com/lino-zurmuehl" target="_blank" rel="noopener">GitHub</a></small>
     </footer>
-    
+
     <script src="nav.js" defer></script>
     <script>
     (function () {

@@ -7,7 +7,14 @@
 
     const NS = 'http://www.w3.org/2000/svg';
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    /* the rail is only shown at >=1200px (see .netrail in style.css);
+       below that, skip the animation entirely */
+    const railMq = matchMedia('(min-width: 1200px)');
     const filters = ['url(#charcoal)', 'url(#charcoal-2)', 'url(#charcoal-3)'];
+
+    /* on load only the starting node ("Politics") is on the page, with the
+       first stroke just beginning; scrolling draws the rest of the journey */
+    const BASE = 0.05;
 
     /* the labels trace the professional journey:
        political science, public opinion, NLP at GESIS, experiments and
@@ -68,7 +75,11 @@
         c.setAttribute('fill', '#2b271f');
         c.setAttribute('filter', 'url(#charcoal-2)');
         c.style.opacity = '0';
-        c.style.transition = 'opacity .5s ease';
+        /* charcoal "dab": nodes pop in with a slight overshoot */
+        c.style.transformBox = 'fill-box';
+        c.style.transformOrigin = 'center';
+        c.style.transform = 'scale(.4)';
+        c.style.transition = 'opacity .45s ease, transform .55s cubic-bezier(.34,1.56,.64,1)';
         svg.appendChild(c);
         nodeEls[n.id] = c;
         boilables.push(c);
@@ -86,45 +97,103 @@
         }
     });
 
-    let ticking = false;
-    function onScroll() {
-        if (!ticking) { requestAnimationFrame(update); ticking = true; }
-    }
+    /* labels last in paint order so they always sit above edges and nodes */
+    Object.keys(labelEls).forEach(id => svg.appendChild(labelEls[id]));
 
-    function update() {
-        ticking = false;
+    /* smoothstep easing for each edge's draw */
+    function smooth(q) { return q * q * (3 - 2 * q); }
+
+    function scrollProgress() {
         const doc = document.documentElement;
         const max = doc.scrollHeight - doc.clientHeight;
-        const p = reduced ? 1 : (max > 0 ? Math.min(1, Math.max(0, doc.scrollTop / max)) : 1);
+        const raw = max > 0 ? Math.min(1, Math.max(0, doc.scrollTop / max)) : 1;
+        return BASE + (1 - BASE) * raw;
+    }
+
+    let current = reduced ? 1 : 0;   /* animated value, eased toward target */
+    let target = reduced ? 1 : scrollProgress();
+    let rafId = null;
+
+    function render(p) {
         const seen = new Set();
+        let lastId = null;
         const n = edgeEls.length;
+        /* overlapping windows: ~2.5 edges drawing at once feels organic */
+        const span = 2.5 / (n + 1.5);
         edgeEls.forEach((e, i) => {
-            const w0 = i / n, w1 = (i + 1) / n;
-            const q = Math.min(1, Math.max(0, (p - w0) / (w1 - w0)));
+            const w0 = i / (n + 1.5);
+            const q = smooth(Math.min(1, Math.max(0, (p - w0) / span)));
             e.el.style.strokeDashoffset = 1 - q;
             if (q > 0.02) seen.add(e.a);
-            if (q > 0.85) seen.add(e.b);
+            if (q > 0.85) { seen.add(e.b); lastId = e.b; }
+            else if (q > 0.02) { lastId = e.a; }
         });
         nodes.forEach(nd => {
             const on = seen.has(nd.id);
-            nodeEls[nd.id].style.opacity = on ? '1' : '0';
-            if (labelEls[nd.id]) labelEls[nd.id].style.opacity = on ? '.9' : '0';
+            const c = nodeEls[nd.id];
+            c.style.opacity = on ? '1' : '0';
+            c.style.transform = on ? 'scale(1)' : 'scale(.4)';
+            if (labelEls[nd.id]) {
+                /* the most recently reached label is emphasized */
+                labelEls[nd.id].style.opacity = on ? (nd.id === lastId ? '1' : '.72') : '0';
+            }
         });
         if (!reduced) {
             svg.style.transform = `translateY(${(p - 0.5) * -18}px) rotate(${(p - 0.5) * 1.6}deg)`;
         }
     }
 
-    /* boiling: cycle turbulence seeds so the strokes shiver softly */
-    if (!reduced) {
+    function tick() {
+        const diff = target - current;
+        if (Math.abs(diff) < 0.0015) {
+            current = target;
+            render(current);
+            rafId = null;
+            return;
+        }
+        current += diff * 0.14;
+        render(current);
+        rafId = requestAnimationFrame(tick);
+    }
+
+    function kick() {
+        if (reduced) { current = target = 1; render(1); return; }
+        target = scrollProgress();
+        if (!rafId && railMq.matches) rafId = requestAnimationFrame(tick);
+    }
+
+    /* boiling: cycle turbulence seeds so the strokes shiver softly.
+       Only runs while the rail is actually visible (wide viewport,
+       tab in the foreground) — no wasted repaints on mobile. */
+    let boilTimer = null;
+
+    function startBoil() {
+        if (boilTimer || reduced) return;
         let f = 0;
-        setInterval(() => {
+        boilTimer = setInterval(() => {
             if (document.hidden) return;
             f = (f + 1) % filters.length;
             boilables.forEach((el, i) => el.setAttribute('filter', filters[(f + i) % filters.length]));
         }, 380);
     }
 
-    addEventListener('scroll', onScroll, { passive: true });
-    update();
+    function stopBoil() {
+        if (boilTimer) { clearInterval(boilTimer); boilTimer = null; }
+    }
+
+    function syncRail() {
+        if (railMq.matches) { startBoil(); kick(); } else { stopBoil(); }
+    }
+
+    if (railMq.addEventListener) {
+        railMq.addEventListener('change', syncRail);
+    } else if (railMq.addListener) {
+        railMq.addListener(syncRail); /* older Safari */
+    }
+    syncRail();
+
+    addEventListener('scroll', function () {
+        if (railMq.matches) kick();
+    }, { passive: true });
+    kick();
 })();

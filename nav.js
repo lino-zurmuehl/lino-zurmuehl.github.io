@@ -33,8 +33,69 @@
     });
   }
 
-  /* draw-in for hand-drawn SVG strokes */
+  /* mini-TOC scrollspy: highlight the section currently in view */
+  var toc = document.querySelector('.mini-toc');
+  if (toc && 'IntersectionObserver' in window) {
+    var tocLinks = toc.querySelectorAll('a[href^="#"]');
+    var byId = {};
+    tocLinks.forEach(function (a) {
+      byId[a.getAttribute('href').slice(1)] = a;
+    });
+    var sections = Object.keys(byId)
+      .map(function (id) { return document.getElementById(id); })
+      .filter(Boolean);
+
+    if (sections.length) {
+      var setActive = function (id) {
+        tocLinks.forEach(function (a) {
+          var on = a.getAttribute('href') === '#' + id;
+          a.classList.toggle('active', on);
+          if (on) {
+            a.setAttribute('aria-current', 'true');
+          } else {
+            a.removeAttribute('aria-current');
+          }
+        });
+      };
+
+      var visible = {};
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          visible[entry.target.id] = entry.isIntersecting;
+        });
+        for (var i = sections.length - 1; i >= 0; i--) {
+          if (visible[sections[i].id]) {
+            setActive(sections[i].id);
+            return;
+          }
+        }
+      }, { rootMargin: '-25% 0px -60% 0px' });
+
+      sections.forEach(function (s) { spy.observe(s); });
+    }
+  }
+
   var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* scroll reveal: sections fade up and h2 underlines draw in.
+     Applied via JS so nothing is ever hidden if scripts fail. */
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    var revealables = document.querySelectorAll('main section');
+    revealables.forEach(function (s, i) {
+      if (i > 0) { s.classList.add('reveal'); }
+    });
+    var revealObs = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(function (s) { revealObs.observe(s); });
+  }
+
+  /* draw-in for hand-drawn SVG strokes */
   var drawables = document.querySelectorAll('.draw');
 
   if (drawables.length) {
